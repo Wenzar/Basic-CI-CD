@@ -1,4 +1,8 @@
-building:
+stages:
+- build
+- style
+
+build:
   stage: build
   tags: 
     - build
@@ -12,3 +16,19 @@ building:
       - src/cat/s21_cat
       - src/grep/s21_grep
     expire_in: 30 days
+
+style:
+  stage: style
+  script:
+    - cp ../materials/linters/.clang-format .
+    - clang-format --version # вывод версии clang-format для отладки
+    - cd src/cat/
+    - clang-format -style=file -output-replacements-xml $(find . -name "*.c" -or -name "*.h") > format.xml || true
+    - cat format.xml # вывод результата clang-format для отображения в CI
+    - |
+      if grep -q "<replacement " format.xml; then
+        echo "Code style check failed. Please run clang-format to fix formatting issues."
+        exit 1
+      else
+        echo "Code style check passed."
+      fi

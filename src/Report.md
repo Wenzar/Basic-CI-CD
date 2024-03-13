@@ -2,8 +2,6 @@
 
 ##### Подними виртуальную машину *Ubuntu Server 22.04 LTS*.
 
-![basic_ci_cd](images/1.png)
-
 ##### Скачай и установи на виртуальную машину **gitlab-runner**.
 
 > sudo curl -L --output /usr/local/bin/gitlab-runner "https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-amd64" </br>
@@ -41,16 +39,27 @@ Check status of the gitlab-runner with
 
 ### Part 2. Сборка
 
-`-` Предыдущее испытание было создано, чтобы повышать в людях уверенность в себе.
-Теперь я подкорректировала тесты, сделав их более сложными и менее льстивыми.
-
-**== Задание ==**
-
 #### Напиши этап для **CI** по сборке приложений из проекта *C2_SimpleBashUtils*.
 
 ##### В файле _gitlab-ci.yml_ добавь этап запуска сборки через мейк файл из проекта _C2_.
 
+- Копируем папки из проекта C2_SimpleBashUtils, в _.gitlab-ci.yml_ указываем путь до makefile:
+
+![basic_ci_cd](images/3.png)
+
 ##### Файлы, полученные после сборки (артефакты), сохрани в произвольную директорию со сроком хранения 30 дней.
+
+```
+  artifacts:
+    paths:
+      - src/cat/s21_cat
+      - src/grep/s21_grep
+    expire_in: 30 days
+```
+
+ - Во вкладке CI/CD на gitlab в Pipelines после пуша появится результат сборки:
+
+ ![basic_ci_cd](images/4.png)
 
 ### Part 3. Тест кодстайла
 
