@@ -1,0 +1,17 @@
+
+
+
+
+void ReadFile(char *name, FlagGrep flagsValue, char *tmpl);
+int FlagsIdentificationGrep(int argc, char **argv, FlagGrep *flagsValue,
+                            char **pattern);
+void TextPrintFlags(char *str, FlagGrep *FlagGrep, char *tmpl, char *name);
+void flagsValueF(FlagGrep *flagsValue, char **pattern, char *optarg);
+void flagsValueE(FlagGrep *flagsValue, char **pattern, char *optarg);
+void flagsValueO(regex_t my_regex, char *str, FlagGrep flagsValue, char *path);
+void flagsValueLC(FlagGrep flagsValue, char *path);
+void SwitchFlagOToZero(FlagGrep *flagsValue, int argc, int optind);
+int BufferForPattern(char **str, char *optarg);
+void AddPatternToBuffer(char **str, char *optarg);
+
+#endif
