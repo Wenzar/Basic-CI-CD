@@ -21,11 +21,7 @@ style_test:
   stage: style
   tags: 
     - style
-  script:
+script:
     - clang-format --version # вывод версии clang-format для отладки
-    - |
-      echo "Checking code style for src/cat directory..."
-      clang-format -style=Google -output-replacements-xml $(find src/cat -name "*.c" -or -name "*.h") || true
-    - |
-      echo "Checking code style for src/grep directory..."
-      clang-format -style=Google -output-replacements-xml $(find src/grep -name "*.c" -or -name "*.h") || true
+    - clang-format -i -style=google src/**/*.c src/**/*.h
+    - git diff --exit-code
