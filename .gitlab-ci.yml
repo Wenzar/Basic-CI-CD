@@ -22,5 +22,18 @@ style_test:
   tags: 
     - style
   script:
-    - clang-format -i -style=google **/*.c **/*.h
-    - git diff --exit-code
+    - clang-format --version # вывод версии clang-format для отладки
+    - |
+      if clang-format -style=Google -output-replacements-xml $(find src/cat -name "*.c" -or -name "*.h") | grep -q "offset"; then
+        echo "Code style check failed. Please run clang-format to fix formatting issues."
+        exit 1
+      else
+        echo "Code style check passed."
+      fi
+    - |
+      if clang-format -style=Google -output-replacements-xml $(find src/grep -name "*.c" -or -name "*.h") | grep -q "offset"; then
+        echo "Code style check failed. Please run clang-format to fix formatting issues."
+        exit 1
+      else
+        echo "Code style check passed."
+      fi
