@@ -1,0 +1,8 @@
+[init]
+	defaultBranch = none
+[fetch]
+	recurseSubmodules = false
+[transfer]
+	bundleURI = true
+[http "https://repos.21-school.ru"]
+	sslCAInfo = /home/grindelf/DO6_CICD-1/src/builds/fyKxg1qR/0/students/DO6_CICD.ID_356283/grindelf_student.21_school.ru/DO6_CICD-1.tmp/CI_SERVER_TLS_CA_FILE
