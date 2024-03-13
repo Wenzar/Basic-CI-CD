@@ -2,7 +2,7 @@ stages:
 - build
 - style
 
-build:
+building:
   stage: build
   tags: 
     - build
@@ -17,8 +17,10 @@ build:
       - src/grep/s21_grep
     expire_in: 30 days
 
-style:
+style_test:
   stage: style
+  tags: 
+    - style
   script:
     - clang-format -i -style=google **/*.c **/*.h
     - git diff --exit-code
