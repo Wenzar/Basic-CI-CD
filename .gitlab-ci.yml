@@ -21,7 +21,7 @@ style_test:
   stage: style
   tags: 
     - style
-script:
+  script:
     - clang-format --version # вывод версии clang-format для отладки
     - cd src/cat/ clang-format -style=Google *.c *.h 2>clang_out.txt
     - cat clang_out.txt
