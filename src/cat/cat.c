@@ -7,8 +7,6 @@ int main(int argc, char *argv[]) {
   if (FlagsIdentificationCat(argc, argv, &flagsValue)) {
     printf("Try 'cat --help' for more information.\n");
     return 0;
-
-    
   }
 
   AsciiTableGenerate(table);

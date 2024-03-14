@@ -45,6 +45,6 @@ do
         fi
   done
 done
-
+(( COUNTER_FAIL++ ))
 echo "SUCCESS: $COUNTER_SUCCESS"
 echo "FAIL: $COUNTER_FAIL"
