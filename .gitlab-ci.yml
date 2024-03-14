@@ -22,6 +22,7 @@ style_test:
   tags: 
     - style
   script:
+    - cp materials/linters/.clang-format .
     - clang-format --version # вывод версии clang-format для отладки
     - cd src/cat/ 
     - clang-format -n *.c *.h &> clang_out.txt
@@ -37,6 +38,7 @@ style_test:
         echo "clang-format found formatting issues in src/grep/"
         exit 1
       fi
+    - rm .clang-format
     # - |
     #   echo "Checking code style for src/cat directory..."
     #   clang-format -style=Google -output-replacements-xml $(find src/cat -name "*.c" -or -name "*.h") || true
