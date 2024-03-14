@@ -2,6 +2,7 @@ stages:
 - build
 - style
 - test
+- notify
 
 building:
   stage: build
@@ -47,3 +48,10 @@ testing:
   script:
   - cd src/
   - bash integrations_tests.sh
+
+notification:
+  stage: notify
+  tags: 
+    - notify
+  script:
+  - bash notify.sh SUS
