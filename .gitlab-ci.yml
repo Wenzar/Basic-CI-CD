@@ -54,4 +54,5 @@ notification:
   tags: 
     - notify
   script:
+  - cd src/
   - bash notify.sh SUS
