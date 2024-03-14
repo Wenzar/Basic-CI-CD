@@ -28,15 +28,15 @@ style_test:
     - clang-format -n *.c *.h &> clang_out.txt
     - cat clang_out.txt
     - if [ -s clang_out.txt ]; then
-        echo "clang-format found formatting issues in src/cat/"
-        exit 1
+        echo "clang-format found formatting issues in src/cat/";
+        exit 1;
       fi
     - cd ../grep/
     - clang-format -n *.c *.h &> clang_out.txt
     - cat clang_out.txt
     - if [ -s clang_out.txt ]; then
-        echo "clang-format found formatting issues in src/grep/"
-        exit 1
+        echo "clang-format found formatting issues in src/grep/";
+        exit 1;
       fi
     - rm .clang-format
     # - |
