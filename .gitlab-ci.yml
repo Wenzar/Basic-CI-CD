@@ -38,7 +38,7 @@ style_test:
         echo "clang-format found formatting issues in src/grep/";
         exit 1;
       fi
-    - rm .clang-format
+    # - rm .clang-format
     # - |
     #   echo "Checking code style for src/cat directory..."
     #   clang-format -style=Google -output-replacements-xml $(find src/cat -name "*.c" -or -name "*.h") || true
