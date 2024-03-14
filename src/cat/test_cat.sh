@@ -15,10 +15,10 @@ do
           if [ "$DIFF_RES" == "Files s21_cat.txt and cat.txt are identical" ]
             then
               (( COUNTER_SUCCESS++ ))
-              echo "SUCCESS: cat $TEST1"
+              # echo "SUCCESS: cat $TEST1"
             else
               (( COUNTER_FAIL++ ))
-              echo "FAIL: cat $TEST1"
+              # echo "FAIL: cat $TEST1"
           fi
           rm s21_cat.txt cat.txt
 done
@@ -36,10 +36,10 @@ do
           if [ "$DIFF_RES" == "Files s21_cat.txt and cat.txt are identical" ]
             then
               (( COUNTER_SUCCESS++ ))
-              echo "SUCCESS: cat $TEST1"
+              # echo "SUCCESS: cat $TEST1"
             else
               (( COUNTER_FAIL++ ))
-              echo "FAIL: cat $TEST1"
+              # echo "FAIL: cat $TEST1"
           fi
           rm s21_cat.txt cat.txt
         fi

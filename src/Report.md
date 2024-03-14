@@ -63,21 +63,43 @@ Check status of the gitlab-runner with
 
 ### Part 3. Тест кодстайла
 
-`-` Поздравляю, ты выполнил абсолютно бессмысленную задачу. Шучу. Она была нужна для перехода ко всем последующим.
-
-**== Задание ==**
-
 #### Напиши этап для **CI**, который запускает скрипт кодстайла (*clang-format*).
+
+- в ``stages:`` добаволяем ``-style``
+
+```
+style_test:
+  stage: style
+  tags: 
+    - style
+  script:
+    - cp materials/linters/.clang-format .
+    - clang-format --version
+    - cd src/cat/ 
+    - clang-format -n *.c *.h &> clang_out.txt
+    - cat clang_out.txt
+    - if [ -s clang_out.txt ]; then
+        echo "clang-format found formatting issues in src/cat/";
+        exit 1;
+      fi
+    - cd ../grep/
+    - clang-format -n *.c *.h &> clang_out.txt
+    - cat clang_out.txt
+    - if [ -s clang_out.txt ]; then
+        echo "clang-format found formatting issues in src/grep/";
+        exit 1;
+      fi
+```
 
 ##### Если кодстайл не прошел, то «зафейли» пайплайн.
 
+ ![basic_ci_cd](images/6.png)
+
 ##### В пайплайне отобрази вывод утилиты *clang-format*.
 
+ ![basic_ci_cd](images/5.png)
+
 ### Part 4. Интеграционные тесты
-
-`-` Отлично, тест на кодстайл написан. [ТИШЕ] Говорю с тобой тет-а-тет. Не говори ничего коллегам. Между нами: ты справляешься очень хорошо. [ГРОМЧЕ] Переходим к написанию интеграционных тестов.
-
-**== Задание ==**
 
 #### Напиши этап для **CI**, который запускает твои интеграционные тесты из того же проекта.
 

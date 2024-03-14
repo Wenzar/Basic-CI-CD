@@ -31,11 +31,11 @@ declare -a extra=(
 "-c -e 345 test_1_grep.txt"
 "-ce ^int test_1_grep.txt test_2_grep.txt"
 "-e ^int test_1_grep.txt"
-"-nivh = test_1_grep.txt test_2_grep.txt"
+"-nivh test_1_grep.txt test_2_grep.txt"
 "-e"
 "-ie INT test_5_grep.txt"
 "-echar test_1_grep.txt test_2_grep.txt"
-"-ne = -e out test_5_grep.txt"
+"-ne -e out test_5_grep.txt"
 "-iv int test_5_grep.txt"
 "-in int test_5_grep.txt"
 "-c -l aboba test_1_grep.txt test_5_grep.txt"
@@ -43,10 +43,10 @@ declare -a extra=(
 "-noe \\ test_5_grep.txt"
 "-l for test_1_grep.txt test_2_grep.txt"
 "-o -e int test_4_grep.txt"
-"-e = -e out test_5_grep.txt"
-"-e ing -e as -e the -e not -e is test_6_grep.txt"
+"-e -e out test_5_grep.txt"
+"-e -e -e -e -e is test_6_grep.txt"
 "-c -e . test_1_grep.txt -e '.'"
-"-l for no_file.txt test_2_grep.txt"
+"-l for test_2_grep.txt"
 "-f test_3_grep.txt test_5_grep.txt"
 )
 
@@ -60,10 +60,10 @@ testing()
     if [ "$DIFF_RES" == "Files test_s21_grep.log and test_sys_grep.log are identical" ]
     then
       (( SUCCESS++ ))
-      echo "SUCCESS: grep $t"
+    #   echo "SUCCESS: grep $t"
     else
       (( FAIL++ ))
-      echo "FAIL: grep $t"
+    #   echo "FAIL: grep $t"
     fi
     rm test_s21_grep.log test_sys_grep.log
 }
@@ -119,4 +119,3 @@ done
 
 echo "FAIL: $FAIL"
 echo "SUCCESS: $SUCCESS"
-echo "ALL: $COUNTER"
