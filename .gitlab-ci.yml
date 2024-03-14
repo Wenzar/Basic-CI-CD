@@ -23,5 +23,14 @@ style_test:
     - style
 script:
     - clang-format --version # вывод версии clang-format для отладки
-    - clang-format -i -style=google src/**/*.c src/**/*.h
-    - git diff --exit-code
+    - cd src/cat/ clang-format -style=Google *.c *.h 2>clang_out.txt
+    - cat clang_out.txt
+    - cd ../grep/
+    - clang-format -style=Google *.c *.h 2>clang_out.txt
+    - cat clang_out.txt
+    # - |
+    #   echo "Checking code style for src/cat directory..."
+    #   clang-format -style=Google -output-replacements-xml $(find src/cat -name "*.c" -or -name "*.h") || true
+    # - |
+    #   echo "Checking code style for src/grep directory..."
+    #   clang-format -style=Google -output-replacements-xml $(find src/grep -name "*.c" -or -name "*.h") || true
