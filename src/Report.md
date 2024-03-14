@@ -65,7 +65,7 @@ Check status of the gitlab-runner with
 
 #### Напиши этап для **CI**, который запускает скрипт кодстайла (*clang-format*).
 
-- в ``stages:`` добаволяем ``-style``
+- В ``stages:`` добаволяем ``-style``
 
 ```
 style_test:
@@ -103,15 +103,51 @@ style_test:
 
 #### Напиши этап для **CI**, который запускает твои интеграционные тесты из того же проекта.
 
+- Добавим скрипт ``integrations_tests`` в ``src``, который вызывает тесты для cat и grep
+
+```
+#!/bin/bash
+
+cd cat/
+RESULT=$(bash test_cat.sh | grep "FAIL: 0")
+if [ -z "$RESULT" ]; then
+    echo 'Integration test failed';
+    exit 1;
+fi
+
+cd ../grep/
+RESULT=$(bash test_grep.sh | grep "FAIL: 0")
+if [ -z "$RESULT" ]; then
+    echo 'Integration test failed';
+    exit 1;
+fi
+echo 'Integration test successful';
+exit 0;
+```
+
+- В ``.gitlab-ci.yml`` добавляем стадию ``testing``. В ``stages:`` добаволяем ``-test``
+```
+testing:
+  stage: test
+  tags: 
+    - test
+  script:
+  - cd src/
+  - bash integrations_tests.sh
+```
 ##### Запусти этот этап автоматически только при условии, если сборка и тест кодстайла прошли успешно.
 
- - тест автоматически пропускается, если предыдущие тесты зафейлены
+ - Последующие стадии автоматически пропускается, если предыдущие зафейлены
 
  ![basic_ci_cd](images/7.png)
 
 ##### Если тесты не прошли, то «зафейли» пайплайн.
 
+ ![basic_ci_cd](images/8.png)
+
 ##### В пайплайне отобрази вывод, что интеграционные тесты успешно прошли / провалились.
+
+ ![basic_ci_cd](images/9.png)
 
 ### Part 5. Этап деплоя
 
