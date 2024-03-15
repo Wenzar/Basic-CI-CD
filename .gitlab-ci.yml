@@ -64,7 +64,7 @@ deploying:
     - chmod 777 src/deploy.sh
     - bash src/deploy.sh
   when: manual
-after_script:
+  after_script:
     - bash notify.sh deploy
 
 notification:
