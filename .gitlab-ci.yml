@@ -19,6 +19,8 @@ building:
       - src/cat/s21_cat
       - src/grep/s21_grep
     expire_in: 30 days
+  after_script:
+    - bash notify.sh build
 
 style_test:
   stage: style
@@ -41,6 +43,8 @@ style_test:
         echo "clang-format found formatting issues in src/grep/";
         exit 1;
       fi
+  after_script:
+    - bash notify.sh style
 
 testing:
   stage: test
@@ -49,6 +53,8 @@ testing:
   script:
   - cd src/
   - bash integrations_tests.sh
+  after_script:
+    - bash notify.sh test
 
 deploying:
   stage: deploy
@@ -58,7 +64,8 @@ deploying:
     - chmod 777 src/deploy.sh
     - bash src/deploy.sh
   when: manual
-
+after_script:
+    - bash notify.sh deploy
 
 notification:
   stage: notify
@@ -66,4 +73,4 @@ notification:
     - notify
   script:
   - cd src/
-  - bash notify.sh ALL STAGES COMPLETE
+  - bash notify.sh ALL_STAGES_COMPLETE

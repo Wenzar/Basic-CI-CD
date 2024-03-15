@@ -254,5 +254,5 @@ notification:
     - notify
   script:
   - cd src/
-  - bash notify.sh ALL STAGES COMPLETE
+  - bash notify.sh ALL_STAGES_COMPLETE
 ```
