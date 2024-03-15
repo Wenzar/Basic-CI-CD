@@ -13,5 +13,5 @@ if [ -z "$RESULT" ]; then
     echo 'Integration test failed';
     exit 1;
 fi
-echo 'Integration test successful';
+echo 'Integration test successful!';
 exit 0;
