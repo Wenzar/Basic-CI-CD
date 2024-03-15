@@ -168,14 +168,41 @@ testing:
 
 ##### Запусти этот этап вручную при условии, что все предыдущие этапы прошли успешно.
 
-##### Напиши bash-скрипт, который при помощи **ssh** и **scp** копирует файлы, полученные после сборки (артефакты), в директорию */usr/local/bin* второй виртуальной машины.
-*Тут тебе могут помочь знания, полученные в проекте DO2_LinuxNetwork.*
+![basic_ci_cd](images/13.png)
 
-- Будь готов объяснить по скрипту, как происходит перенос.
+##### Напиши bash-скрипт, который при помощи **ssh** и **scp** копирует файлы, полученные после сборки (артефакты), в директорию */usr/local/bin* второй виртуальной машины.
+
+```
+#!/bin/bash
+
+REMOTE_HOST="172.31.41.206"
+REMOTE_USER="grindelf"
+REMOTE_DIR="/usr/local/bin"
+
+scp -o StrictHostKeyChecking=no cat/s21_cat grep/s21_grep $REMOTE_USER@$REMOTE_HOST:/tmp/
+
+if [ $? -ne 0 ]; then
+  echo "Ошибка при копировании файлов"
+  exit 1
+fi
+
+ssh -o StrictHostKeyChecking=no $REMOTE_USER@$REMOTE_HOST "mv /tmp/s21_cat $REMOTE_DIR; mv /tmp/s21_grep $REMOTE_DIR"
+
+if [ $? -ne 0 ]; then
+  echo "Ошибка при перемещении файлов"
+  exit 1
+fi
+
+echo "Файлы успешно скопированы"
+```
 
 ##### В файле _gitlab-ci.yml_ добавь этап запуска написанного скрипта.
 
+
+
 ##### В случае ошибки «зафейли» пайплайн.
+
+![basic_ci_cd](images/14.png)
 
 В результате ты должен получить готовые к работе приложения из проекта *C2_SimpleBashUtils* (s21_cat и s21_grep) на второй виртуальной машине.
 

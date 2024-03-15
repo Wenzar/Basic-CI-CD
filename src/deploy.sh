@@ -4,7 +4,7 @@ REMOTE_HOST="172.31.41.206"
 REMOTE_USER="grindelf"
 REMOTE_DIR="/usr/local/bin"
 
-scp -o StrictHostKeyChecking=no src/cat/s21_cat src/grep/s21_grep $REMOTE_USER@$REMOTE_HOST:/tmp/
+scp -o StrictHostKeyChecking=no cat/s21_cat grep/s21_grep $REMOTE_USER@$REMOTE_HOST:/tmp/
 
 if [ $? -ne 0 ]; then
   echo "Ошибка при копировании файлов"
