@@ -2,6 +2,7 @@ stages:
 - build
 - style
 - test
+- deploy
 - notify
 
 building:
@@ -48,6 +49,16 @@ testing:
   script:
   - cd src/
   - bash integrations_tests.sh
+
+deploying:
+  stage: deploy
+  tags:
+    - deploy
+  script:
+    - chmod 777 src/deploy.sh
+    - bash src/deploy.sh
+  when: manual
+
 
 notification:
   stage: notify
