@@ -20,7 +20,7 @@ building:
       - src/grep/s21_grep
     expire_in: 30 days
   after_script:
-    - bash notify.sh build
+    - bash src/notify.sh build
 
 style_test:
   stage: style
@@ -44,7 +44,7 @@ style_test:
         exit 1;
       fi
   after_script:
-    - bash notify.sh style
+    - bash src/notify.sh style
 
 testing:
   stage: test
@@ -54,7 +54,7 @@ testing:
   - cd src/
   - bash integrations_tests.sh
   after_script:
-    - bash notify.sh test
+    - bash src/notify.sh test
 
 deploying:
   stage: deploy
@@ -65,7 +65,7 @@ deploying:
     - bash src/deploy.sh
   when: manual
   after_script:
-    - bash notify.sh deploy
+    - bash src/notify.sh deploy
 
 notification:
   stage: notify
@@ -73,4 +73,4 @@ notification:
     - notify
   script:
   - cd src/
-  - bash notify.sh ALL_STAGES_COMPLETE
+  - bash src/notify.sh ALL_STAGES_COMPLETE
