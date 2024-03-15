@@ -253,6 +253,6 @@ notification:
   tags: 
     - notify
   script:
-  - cd src/
-  - bash notify.sh ALL_STAGES_COMPLETE
+  - bash src/notify.sh ALL_STAGES
 ```
+![basic_ci_cd](images/18.png)
