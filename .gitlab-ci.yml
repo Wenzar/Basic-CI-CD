@@ -72,5 +72,4 @@ notification:
   tags: 
     - notify
   script:
-  - cd src/
-  - bash src/notify.sh ALL_STAGES_COMPLETE
+  - bash src/notify.sh ALL_STAGES
