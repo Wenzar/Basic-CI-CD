@@ -66,4 +66,4 @@ notification:
     - notify
   script:
   - cd src/
-  - bash notify.sh SUS
+  - bash notify.sh ALL STAGES COMPLETE
