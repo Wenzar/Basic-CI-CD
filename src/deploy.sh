@@ -7,7 +7,7 @@ REMOTE_DIR="/usr/local/bin"
 scp -o StrictHostKeyChecking=no cat/s21_cat grep/s21_grep $REMOTE_USER@$REMOTE_HOST:$REMOTE_DIR
 
 if [ $? -ne 0 ]; then
-  echo "Ошибка при копировании файлов!"
+  echo "Ошибка при копировании файлов"
   exit 1
 fi
 
